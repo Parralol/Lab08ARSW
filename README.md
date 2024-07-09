@@ -5,9 +5,11 @@ This programm allow multiple users to draw in a board using realtime
 
 ## Architecture 
 
-![Lab05 (1)](https://github.com/Parralol/Lab05ARSW/assets/110953563/6b9a1c06-4762-4ab5-bc01-09e6b77a9310)
+![Lab08 (1)](https://github.com/Parralol/Lab08ARSW/assets/110953563/f1ebc18c-764a-4e4b-96c9-63dfad1a7603)
 
-As seen by the following diagram the user connects via browser to use the program, then he must connect via http using the 8080 port (tomcat), the program is deployed in a EC2 instance which runs the program with the Spring framework, this program is running two java classes, the main one being Lab05Application and the controller being Lab05Controller, the way the main class comunicates with the controller is via paths, the main path being _/calculator_ is the first one to be run, then the responses the controller gives are being delivered as infomation in the post type paths _/case_ & _/calculate_
+As seen by this diagram each user connects via browser to the host using http and the 8080 port, and this browser will be supported by a React mounted client that works with ReactDOM that creates a Root that renders the editor, this editor supports the canvas that each user will be using, this canvas contains a svrStatus object that contains the connection status with the server, a comunicationWS object that works with the React.Ref library and the myp5 object that mantains the canvas.
+
+the BBCanvas uses the WSBBChannel which purpose is to mantain connections and send data to the server, this uses the BBServiceURL to initialize the URL given X host, then communicates to the server via WebSockets and references either /bbService or /status paths, the interactiveblackboardApplication validates each path given and returns the corresponding result with each point given and broadcast all points that are getting sent to the server.
 
 ## Getting Started
 
