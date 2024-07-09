@@ -66,8 +66,16 @@ function Editor({ name }
 }
 
 function BBServiceURL() {
-    return 'ws://localhost:8080/bbService';
-}
+    var host = window.location.host;
+    console.log("Host: " + host);
+    // En heroku necesita conexiones seguras de web socket
+    var url = 'ws://' + (host) + '/bbService';
+    if(host.toString().startsWith("localhost")){
+    url = 'ws://' + (host) + '/bbService';
+    }
+    console.log("URL Calculada: " + url);
+    return url;
+    }
 class WSBBChannel {
     constructor(URL, callback) {
         this.URL = URL;
